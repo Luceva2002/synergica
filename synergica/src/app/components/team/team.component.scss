@@ -1,0 +1,123 @@
+.team {
+  background: var(--primary-color);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, var(--secondary-color) 0%, transparent 70%);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .team-member {
+    overflow: hidden;
+
+    .member-image {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+
+    .member-info {
+      text-align: center;
+
+      h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .role {
+        color: var(--primary-light);
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .bio {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+
+        a {
+          color: var(--text-light);
+          font-size: 1.2rem;
+          transition: all 0.3s ease;
+
+          &:hover {
+            color: var(--primary-light);
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+  }
+}
+
+.join-team {
+  text-align: center;
+  margin-top: 6rem;
+  padding: 4rem;
+  background: var(--secondary-color);
+  border-radius: 1rem;
+
+  h3 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .team {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .join-team {
+    padding: 2rem;
+  }
+}

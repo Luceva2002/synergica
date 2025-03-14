@@ -1,0 +1,50 @@
+<section id="servizi" class="section services">
+  <div class="container">
+    <h2 class="heading text-center">I Nostri Servizi</h2>
+    <p class="subheading text-center">
+      Offriamo soluzioni complete per la trasformazione digitale della tua azienda
+    </p>
+
+    <div class="services-grid">
+      @for (service of services; track service.title) {
+        <div class="service-card" data-aos="fade-up">
+          <div class="service-icon">
+            <i class="icon-{{service.icon}}"></i>
+          </div>
+          <h3 class="service-title">{{service.title}}</h3>
+          <p class="service-description">{{service.description}}</p>
+        </div>
+      }
+    </div>
+
+    <div class="tech-stack">
+      <h3 class="tech-title">Le Nostre Tecnologie</h3>
+      <div class="tech-grid">
+        <div class="tech-item" data-aos="fade-up">
+          <img src="assets/images/tech/angular.svg" alt="Angular">
+          <span>Angular</span>
+        </div>
+        <div class="tech-item" data-aos="fade-up" data-aos-delay="100">
+          <img src="assets/images/tech/node.svg" alt="Node.js">
+          <span>Node.js</span>
+        </div>
+        <div class="tech-item" data-aos="fade-up" data-aos-delay="200">
+          <img src="assets/images/tech/docker.svg" alt="Docker">
+          <span>Docker</span>
+        </div>
+        <div class="tech-item" data-aos="fade-up" data-aos-delay="300">
+          <img src="assets/images/tech/github.svg" alt="GitHub">
+          <span>GitHub</span>
+        </div>
+        <div class="tech-item" data-aos="fade-up" data-aos-delay="400">
+          <img src="assets/images/tech/aws.svg" alt="AWS">
+          <span>AWS</span>
+        </div>
+        <div class="tech-item" data-aos="fade-up" data-aos-delay="500">
+          <img src="assets/images/tech/kubernetes.svg" alt="Kubernetes">
+          <span>Kubernetes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 

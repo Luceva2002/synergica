@@ -1,0 +1,98 @@
+<section id="contatti" class="section contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2 class="heading">Parliamo del tuo progetto</h2>
+        <p class="subheading">
+          Siamo qui per aiutarti a trasformare le tue idee in realtà. Contattaci per una consulenza gratuita.
+        </p>
+
+        <div class="info-items">
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Sede</h3>
+              <p>Via Lunigiana 6, Roma, 00161</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h3>Telefono</h3>
+              <p>+39 06 4404294</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p>info&#64;synergica.tech</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="https://linkedin.com/company/synergica" target="_blank">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/synergica" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://twitter.com/synergica" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="name">Nome *</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              [class.error]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              [class.error]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="company">Azienda</label>
+            <input type="text" id="company" formControlName="company">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input type="tel" id="phone" formControlName="phone">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Messaggio *</label>
+            <textarea
+              id="message"
+              rows="5"
+              formControlName="message"
+              [class.error]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">
+            Invia Messaggio
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

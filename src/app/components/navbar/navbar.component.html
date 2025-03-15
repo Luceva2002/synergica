@@ -1,0 +1,23 @@
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="container">
+    <div class="navbar-brand">
+      <a href="#" class="logo" (click)="scrollToSection('hero'); $event.preventDefault()">
+        <img src="assets/synergica_logo.svg" alt="Synergica Logo" class="logo-img">
+      </a>
+    </div>
+
+    <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="navbar-menu" [class.active]="isMobileMenuOpen">
+      <a href="#servizi" class="nav-link" (click)="scrollToSection('servizi'); $event.preventDefault()">Servizi</a>
+      <a href="#team" class="nav-link" (click)="scrollToSection('team'); $event.preventDefault()">Team</a>
+      <a href="#partners" class="nav-link" (click)="scrollToSection('partners'); $event.preventDefault()">Partners</a>
+      <a href="#progetti" class="nav-link" (click)="scrollToSection('progetti'); $event.preventDefault()">Progetti</a>
+      <a href="#contatti" class="btn btn-primary" (click)="scrollToSection('contatti'); $event.preventDefault()">Contattaci</a>
+    </div>
+  </div>
+</nav>

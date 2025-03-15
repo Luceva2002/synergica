@@ -1,0 +1,50 @@
+<section id="servizi" class="section services">
+  <div class="container">
+    <h2 class="heading text-center">I Nostri Servizi</h2>
+    <p class="subheading text-center">
+      Offriamo soluzioni complete per la trasformazione digitale della tua azienda
+    </p>
+
+    <div class="services-grid">
+      @for (service of services; track service.title) {
+        <div class="service-card" data-aos="fade-up">
+          <div class="service-icon">
+            <i class="icon-{{service.icon}}"></i>
+          </div>
+          <h3 class="service-title">{{service.title}}</h3>
+          <p class="service-description">{{service.description}}</p>
+        </div>
+      }
+    </div>
+
+    <div class="tech-stack">
+      <h3 class="tech-title">Le Nostre Tecnologie</h3>
+      <div class="tech-grid">
+        <div class="tech-item" data-aos="fade-up">
+          <i class="fab fa-angular"></i>
+          <span>Angular</span>
+        </div>
+        <div class="tech-item" data-aos="fade-up" data-aos-delay="100">
+          <i class="fab fa-node-js"></i>
+          <span>Node.js</span>
+        </div>
+        <div class="tech-item" data-aos="fade-up" data-aos-delay="200">
+          <i class="fab fa-docker"></i>
+          <span>Docker</span>
+        </div>
+        <div class="tech-item" data-aos="fade-up" data-aos-delay="300">
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+        </div>
+        <div class="tech-item" data-aos="fade-up" data-aos-delay="400">
+          <i class="fab fa-aws"></i>
+          <span>AWS</span>
+        </div>
+        <div class="tech-item" data-aos="fade-up" data-aos-delay="500">
+          <i class="fab fa-digital-ocean"></i>
+          <span>Kubernetes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 

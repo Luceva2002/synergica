@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { ServicesComponent } from './components/services/services.component';
@@ -14,8 +12,6 @@ import { FooterComponent } from './components/footer/footer.component';
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
-    RouterOutlet,
     NavbarComponent,
     HeroComponent,
     ServicesComponent,
@@ -26,19 +22,17 @@ import { FooterComponent } from './components/footer/footer.component';
     FooterComponent
   ],
   template: `
-    <app-navbar></app-navbar>
+    <app-navbar />
     <main>
-      <app-hero></app-hero>
-      <app-services></app-services>
-      <app-team></app-team>
-      <app-partners></app-partners>
-      <app-projects></app-projects>
-      <app-contact></app-contact>
+      <app-hero />
+      <app-services />
+      <app-team />
+      <app-partners />
+      <app-projects />
+      <app-contact />
     </main>
-    <app-footer></app-footer>
-    <router-outlet></router-outlet>
-  `,
-  styleUrls: ['./app.component.scss']
+    <app-footer />
+  `
 })
 export class AppComponent {
   title = 'Synergica - Soluzioni Digitali Innovative';

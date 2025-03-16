@@ -21,26 +21,26 @@ export class ProjectsComponent {
     {
       title: 'Digital Cassa',
       description: 'Sistema di gestione digitale per la cassa integrato con soluzioni di pagamento elettronico e gestione magazzino.',
-      image: 'assets/images/projects/digital-cassa.jpg',
+      image: 'assets/vettoriali.svg',
       technologies: ['Angular', 'Node.js', 'MongoDB', 'Docker'],
       link: 'https://digital-cassa.synergica.it'
     },
     {
       title: 'Retail Share',
       description: 'Piattaforma di condivisione e gestione per il settore retail con analisi dati in tempo reale.',
-      image: 'assets/images/projects/retail-share.jpg',
+      image: 'assets/vettoriali.svg',
       technologies: ['React', 'Python', 'AWS', 'Kubernetes']
     },
     {
       title: 'Event Booking Tool',
       description: 'Sistema di prenotazione eventi con gestione automatizzata e integrazione calendario.',
-      image: 'assets/images/projects/event-booking.jpg',
+      image: 'assets/vettoriali.svg',
       technologies: ['Vue.js', 'Laravel', 'MySQL', 'Redis']
     },
     {
       title: 'Sicurezza 4.0',
       description: 'Piattaforma per la gestione della sicurezza aziendale con monitoraggio in tempo reale.',
-      image: 'assets/images/projects/sicurezza.jpg',
+      image: 'assets/vettoriali.svg',
       technologies: ['Angular', 'Spring Boot', 'PostgreSQL', 'Elasticsearch']
     }
   ];

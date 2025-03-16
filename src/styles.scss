@@ -313,6 +313,7 @@ input, textarea {
   position: relative;
   color: var(--text-primary);
   transition: all 0.3s ease;
+  text-align: center;
 
   &:hover {
     transform: translateY(-2px);
@@ -322,7 +323,8 @@ input, textarea {
     content: '';
     position: absolute;
     bottom: -10px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 60px;
     height: 4px;
     background: var(--accent-color);
@@ -343,8 +345,9 @@ input, textarea {
 
 .subheading {
   font-size: 1.4rem;
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem;
   max-width: 800px;
   line-height: 1.6;
   color: var(--text-light);
+  text-align: center;
 }

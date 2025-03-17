@@ -184,8 +184,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--background);
+  background-color: var(--background);
   z-index: 1;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  contain: layout size paint;
   overflow: hidden;
 }
 
@@ -195,6 +198,7 @@
   margin: 0 auto;
   text-align: center;
   padding: 0 2rem;
+  contain: content;
 }
 
 .text-wrapper {
@@ -204,10 +208,12 @@
   gap: 0.5rem;
   transform-style: preserve-3d;
   perspective: 1000px;
+  contain: layout style;
 }
 
 .text-line {
   overflow: hidden;
+  contain: layout style;
   
   .word {
     display: inline-block;
@@ -219,6 +225,7 @@
     opacity: 0;
     transform: translateY(100%);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    will-change: transform, opacity;
     
     &.accent {
       background: linear-gradient(45deg, #64ffda, #00e5ff);
@@ -246,15 +253,18 @@
   inset: -50%;
   background: 
     radial-gradient(2px 2px at 40px 60px, #64ffda, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 20px 50px, #00e5ff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 20px 50px, #64ffda, rgba(0,0,0,0)),
     radial-gradient(2px 2px at 30px 100px, #64ffda, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 40px 60px, #00e5ff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 60px, #64ffda, rgba(0,0,0,0)),
     radial-gradient(2px 2px at 110px 90px, #64ffda, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 190px 150px, #00e5ff, rgba(0,0,0,0));
+    radial-gradient(2px 2px at 190px 150px, #64ffda, rgba(0,0,0,0));
+  background-repeat: repeat;
   background-size: 200px 200px;
-  animation: parallaxBg 60s infinite linear;
-  opacity: 0.3;
-  z-index: -1;
+  opacity: 0.15;
+  animation: parallaxBg 60s linear infinite;
+  will-change: transform;
+  contain: strict;
+  pointer-events: none;
 }
 
 @keyframes parallaxBg {
@@ -268,24 +278,52 @@
   & > :not(.hero-section) {
     position: relative;
     z-index: 2;
-    min-height: 100vh;
     margin-top: 100vh;
     background: var(--background);
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
     will-change: transform;
   }
 }
 
 @media (max-width: 768px) {
+  .text-line .word {
+    font-size: clamp(2rem, 6vw, 5rem);
+  }
+  
+  .text-line:last-child .word {
+    font-size: clamp(3rem, 8vw, 7rem);
+  }
+  
   .hero-content {
     padding: 0 1rem;
   }
+}
 
+@media (max-width: 480px) {
   .text-line .word {
-    font-size: clamp(2rem, 7vw, 4rem);
-    
-    &:last-child {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-    }
+    font-size: clamp(1.8rem, 5vw, 4rem);
+  }
+  
+  .text-line:last-child .word {
+    font-size: clamp(2.5rem, 7vw, 6rem);
+  }
+  
+  .text-wrapper {
+    gap: 0.3rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-content {
+    max-width: 1400px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-bg {
+    animation: none;
+  }
+  
+  .text-line .word {
+    transition: none;
   }
 } 

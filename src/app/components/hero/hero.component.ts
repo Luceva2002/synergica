@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ChangeDetectionStrategy, NgZone, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,14 +10,40 @@ gsap.registerPlugin(ScrollTrigger);
   standalone: true,
   imports: [CommonModule],
   templateUrl: './hero.component.html',
-  styleUrls: ['./hero.component.scss']
+  styleUrls: ['./hero.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeroComponent implements OnInit {
-  constructor(private el: ElementRef) {}
+export class HeroComponent implements OnInit, OnDestroy {
+  private scrollTriggerInstance: ScrollTrigger | null = null;
+  private animations: gsap.core.Tween[] = [];
+  
+  constructor(private el: ElementRef, private ngZone: NgZone) {}
   
   ngOnInit(): void {
-    this.initAnimations();
-    this.initParallax();
+    // Esegui le animazioni fuori dalla zona Angular per migliorare le performance
+    this.ngZone.runOutsideAngular(() => {
+      // Inizializza le animazioni solo dopo che il DOM è completamente caricato
+      setTimeout(() => {
+        this.initAnimations();
+        this.initScrollEffect();
+      }, 100);
+    });
+  }
+  
+  ngOnDestroy(): void {
+    // Pulisci le animazioni quando il componente viene distrutto
+    this.animations.forEach(animation => animation.kill());
+    
+    if (this.scrollTriggerInstance) {
+      this.scrollTriggerInstance.kill();
+    }
+    
+    // Rimuovi tutti gli ScrollTrigger associati a questo componente
+    ScrollTrigger.getAll().forEach(trigger => {
+      if (trigger.vars.trigger === this.el.nativeElement.querySelector('.hero-section')) {
+        trigger.kill();
+      }
+    });
   }
 
   private initAnimations(): void {
@@ -29,7 +55,7 @@ export class HeroComponent implements OnInit {
       rotateX: -45
     });
 
-    gsap.to(words, {
+    const mainAnimation = gsap.to(words, {
       duration: 1.2,
       y: 0,
       opacity: 1,
@@ -39,7 +65,7 @@ export class HeroComponent implements OnInit {
       onComplete: () => {
         // Movimento fluttuante continuo
         words.forEach((word: any, i: number) => {
-          gsap.to(word, {
+          const animation = gsap.to(word, {
             y: "+=15",
             rotateX: "+=5",
             duration: 2,
@@ -48,53 +74,72 @@ export class HeroComponent implements OnInit {
             ease: "sine.inOut",
             delay: i * 0.1
           });
+          this.animations.push(animation);
         });
       }
     });
+    
+    this.animations.push(mainAnimation);
   }
 
-  private initParallax(): void {
-    // Effetto parallax per il testo dell'hero durante lo scroll
-    gsap.to('.text-wrapper', {
+  private initScrollEffect(): void {
+    // Seleziona la sezione hero
+    const heroSection = this.el.nativeElement.querySelector('.hero-section') as HTMLElement;
+    if (!heroSection) return;
+    
+    // Imposta la z-index per assicurarsi che sia sotto gli altri elementi durante lo scroll
+    gsap.set(heroSection, { 
+      zIndex: 1,
+      willChange: 'transform, opacity'
+    });
+    
+    // Crea un timeline con un'animazione definitiva dello hero
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: '.hero-section',
+        trigger: heroSection,
         start: 'top top',
         end: '+=100%',
-        scrub: true,
-        pin: true // Mantiene l'hero fisso durante lo scroll
-      },
-      y: '-25%',
-      scale: 0.8,
-      opacity: 0,
-      ease: 'none'
+        scrub: 0.5,
+        onLeave: () => {
+          // Quando l'utente ha scrollato oltre l'hero, imposta la posizione a absolute
+          // e lo z-index a -1 per rimuoverlo completamente dal flusso
+          gsap.set(heroSection, { 
+            position: 'absolute', 
+            zIndex: -1,
+            pointerEvents: 'none', // Disabilita le interazioni con l'elemento
+            visibility: 'hidden' // Nasconde completamente l'elemento
+          });
+        },
+        onEnterBack: () => {
+          // Imposta che anche tornando indietro, l'hero resta nascosto
+          // Questo previene qualsiasi glitch o riapparizione
+          return false;
+        }
+      }
     });
-
-    // Effetto per la sezione successiva
+    
+    // Aggiungi l'animazione di scomparsa
+    tl.to(heroSection, {
+      opacity: 0,
+      y: '-100%',
+      scale: 0.8,
+      duration: 1,
+      ease: 'power2.inOut'
+    });
+    
+    // Configura la sezione successiva per sovrapporsi all'hero
     const nextSection = this.el.nativeElement.nextElementSibling;
     if (nextSection) {
-      gsap.from(nextSection, {
-        scrollTrigger: {
-          trigger: nextSection,
-          start: 'top bottom',
-          end: 'top top',
-          scrub: true
-        },
-        y: '20%',
-        ease: 'none'
+      gsap.set(nextSection, { 
+        position: 'relative',
+        zIndex: 2, // Z-index maggiore dell'hero
+        background: 'var(--background)' // Assicura che abbia uno sfondo che copre
       });
     }
-
-    // Effetto particelle in background
-    gsap.to('.parallax-bg', {
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: '+=100%',
-        scrub: true
-      },
-      y: '40%',
-      opacity: 0,
-      ease: 'none'
-    });
+    
+    // Salva l'istanza per la pulizia
+    this.scrollTriggerInstance = ScrollTrigger.getAll().find(
+      trigger => trigger.vars.trigger === heroSection
+    ) || null;
   }
 } 

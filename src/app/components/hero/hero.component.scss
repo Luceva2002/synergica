@@ -173,4 +173,119 @@
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+.hero-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.text-line {
+  overflow: hidden;
+  
+  .word {
+    display: inline-block;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: white;
+    margin-right: 0.25em;
+    opacity: 0;
+    transform: translateY(100%);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    
+    &.accent {
+      background: linear-gradient(45deg, #64ffda, #00e5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 20px rgba(100, 255, 218, 0.4));
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &:last-child .word {
+    font-size: clamp(4rem, 10vw, 9rem);
+    background: linear-gradient(45deg, #64ffda, #00e5ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(100, 255, 218, 0.5));
+  }
+}
+
+.parallax-bg {
+  position: absolute;
+  inset: -50%;
+  background: 
+    radial-gradient(2px 2px at 40px 60px, #64ffda, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 20px 50px, #00e5ff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 30px 100px, #64ffda, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 60px, #00e5ff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 110px 90px, #64ffda, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 190px 150px, #00e5ff, rgba(0,0,0,0));
+  background-size: 200px 200px;
+  animation: parallaxBg 60s infinite linear;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+@keyframes parallaxBg {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
+}
+
+:host {
+  display: block;
+  
+  & > :not(.hero-section) {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    margin-top: 100vh;
+    background: var(--background);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+    will-change: transform;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 0 1rem;
+  }
+
+  .text-line .word {
+    font-size: clamp(2rem, 7vw, 4rem);
+    
+    &:last-child {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+    }
+  }
 } 

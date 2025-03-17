@@ -6,7 +6,7 @@
       </a>
     </div>
 
-    <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen">
+    <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen" [attr.aria-expanded]="isMobileMenuOpen">
       <span></span>
       <span></span>
       <span></span>

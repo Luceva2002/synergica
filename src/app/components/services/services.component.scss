@@ -1,113 +1,120 @@
-.services {
-  background: var(--primary-color);
-  position: relative;
+@import '../../../styles/variables';
+
+.services-section {
+  padding: 6rem 0;
+  background-color: $primary-color;
   overflow: hidden;
-  padding: 4rem 0;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at bottom left, var(--secondary-color) 0%, transparent 70%);
-    opacity: 0.4;
-    z-index: 0;
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
-    padding: 0 1rem;
-  }
-
-  @media (max-width: 768px) {
-    padding: 3rem 0;
-  }
+  position: relative;
 }
 
-.text-center {
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
   text-align: center;
+  margin-bottom: 4rem;
+
+  .heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: $text-color;
+  }
+
+  .subheading {
+    font-size: 1.1rem;
+    color: $text-light;
+    max-width: 600px;
+    margin: 0 auto;
+  }
 }
 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-top: 4rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    margin-top: 2rem;
-  }
+  padding: 1rem;
 }
 
 .service-card {
-  background: var(--secondary-color);
-  padding: 2rem;
-  border-radius: 1rem;
-  transition: all 0.3s ease;
+  background: $background-alt;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid $border-color;
+  transition: transform 0.3s ease;
+  text-decoration: none;
   cursor: pointer;
-
-  @media (max-width: 480px) {
-    padding: 1.5rem;
-  }
-
+  
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-color: $accent-color;
 
-    .service-icon {
-      background: var(--accent-color);
-      color: var(--primary-color);
+    .icon-wrapper {
+      background: $accent-color;
+      
+      i {
+        transform: scale(1.1);
+        color: $background-alt;
+      }
     }
   }
-}
 
-.service-icon {
-  width: 60px;
-  height: 60px;
-  background: rgba(100, 255, 218, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
-
-  @media (max-width: 480px) {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 1rem;
+  .card-content {
+    padding: 2rem;
   }
 
-  i {
-    font-size: 1.5rem;
-    color: var(--accent-color);
-
-    @media (max-width: 480px) {
-      font-size: 1.25rem;
+  .icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    background: rgba($accent-color, 0.1);
+    transition: all 0.3s ease;
+    
+    i {
+      font-size: 1.5rem;
+      color: $text-color;
+      transition: all 0.3s ease;
     }
   }
-}
 
-.service-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-
-  @media (max-width: 480px) {
+  h3 {
     font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: $text-color;
+  }
+
+  p {
+    color: $text-light;
+    line-height: 1.6;
   }
 }
 
-.service-description {
-  color: var(--text-secondary);
-  line-height: 1.6;
+@media (max-width: 768px) {
+  .services-section {
+    padding: 4rem 0;
+  }
 
-  @media (max-width: 480px) {
-    font-size: 0.95rem;
+  .section-header {
+    margin-bottom: 3rem;
+
+    .heading {
+      font-size: 2rem;
+    }
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 

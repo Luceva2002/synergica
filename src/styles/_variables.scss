@@ -1,0 +1,43 @@
+// Colors
+$primary-color: #0a192f;
+$accent-color: #64ffda;
+$text-color: #e6f1ff;
+$text-light: #8892b0;
+$background: #0a192f;
+$background-alt: #112240;
+$border-color: #233554;
+
+// Typography
+$font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-size-base: 16px;
+$line-height-base: 1.5;
+
+// Spacing
+$spacing-unit: 8px;
+$container-padding: 24px;
+$section-spacing: 80px;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Z-index
+$z-index-navbar: 1000;
+$z-index-overlay: 990;
+$z-index-modal: 1100;
+
+// Transitions
+$transition-base: all 0.3s ease;
+$transition-menu: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Shadows
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px; 

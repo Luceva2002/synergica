@@ -3,19 +3,22 @@
 /* Importazione dei font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Importazione delle variabili */
+@import 'styles/variables';
+
 /* Variabili CSS */
 :root {
   --primary-gradient: linear-gradient(135deg, #64ffda 0%, #48bfe3 100%);
-  --primary-color: #0a192f;
+  --primary-color: #{$primary-color};
   --primary-dark: #0a192f;
   --primary-light: #64ffda;
   --secondary-color: #112240;
-  --accent-color: #64ffda;
-  --text-color: #e6f1ff;
-  --text-light: #8892b0;
-  --background-color: #0a192f;
-  --background-alt: #112240;
-  --border-color: #233554;
+  --accent-color: #{$accent-color};
+  --text-color: #{$text-color};
+  --text-light: #{$text-light};
+  --background: #{$background};
+  --background-alt: #{$background-alt};
+  --border-color: #{$border-color};
   --success-color: #64ffda;
   --error-color: #ff6b6b;
   --warning-color: #ffd93d;
@@ -29,9 +32,7 @@
 }
 
 /* Reset CSS */
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -39,15 +40,18 @@
 
 /* Stili base */
 html {
-  font-size: 16px;
+  font-size: $font-size-base;
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.6;
-  color: var(--text-primary);
-  background: var(--primary-color);
+  font-family: $font-family;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: var(--text-color);
+  background-color: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Tipografia */
@@ -81,26 +85,25 @@ p {
 
 /* Link */
 a {
-  color: var(--primary-light);
   text-decoration: none;
-  transition: color 0.3s ease;
+  color: inherit;
 }
 
-a:hover {
-  color: var(--accent-color);
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Container */
 .container {
-  width: 100%;
-  max-width: 1200px;
+  max-width: $breakpoint-xl;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 $container-padding;
 }
 
 /* Sezioni */
 .section {
-  padding: 6rem 0;
+  padding: $section-spacing 0;
   position: relative;
   overflow: hidden;
 

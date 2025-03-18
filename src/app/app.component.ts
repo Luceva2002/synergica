@@ -1,11 +1,10 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { ServicesComponent } from './components/services/services.component';
 import { TeamComponent } from './components/team/team.component';
 import { PartnersComponent } from './components/partners/partners.component';
-import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -15,24 +14,21 @@ import { environment } from '@env/environment';
   selector: 'app-root',
   standalone: true,
   imports: [
-    NavbarComponent,
+    CommonModule,
     HeroComponent,
     ServicesComponent,
     TeamComponent,
     PartnersComponent,
-    FeedbackComponent,
     ProjectsComponent,
     ContactComponent,
     FooterComponent
   ],
   template: `
-    <app-navbar />
     <main>
       <app-hero />
       <app-services />
       <app-team />
       <app-partners />
-      <app-feedback />
       <app-projects />
       <app-contact />
     </main>

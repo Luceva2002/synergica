@@ -1,120 +1,135 @@
 @import '../../../styles/variables';
 
-.services-section {
-  padding: 6rem 0;
-  background-color: $primary-color;
-  overflow: hidden;
-  position: relative;
+:host {
+  display: block;
 }
 
-.container {
+.services-section {
+  position: relative;
+  padding: 8rem 2rem;
+  min-height: 100vh;
+  background-color: #081022;
+  color: white;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.services-parallax {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  background: linear-gradient(to bottom, rgba(8, 16, 34, 0.8) 0%, #081022 70%);
+  z-index: -1;
+  will-change: transform;
+  transform-origin: top center;
+  pointer-events: none;
+}
+
+.services-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-.section-header {
-  text-align: center;
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
   margin-bottom: 4rem;
-
-  .heading {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: $text-color;
-  }
-
-  .subheading {
-    font-size: 1.1rem;
-    color: $text-light;
-    max-width: 600px;
-    margin: 0 auto;
-  }
+  text-align: center;
+  background: linear-gradient(45deg, #64ffda, #00e5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(100, 255, 218, 0.4));
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
-  padding: 1rem;
 }
 
 .service-card {
-  background: $background-alt;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid $border-color;
-  transition: transform 0.3s ease;
-  text-decoration: none;
-  cursor: pointer;
+  background: rgba(15, 30, 60, 0.5);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  will-change: transform;
   
   &:hover {
-    transform: translateY(-5px);
-    border-color: $accent-color;
-
-    .icon-wrapper {
-      background: $accent-color;
-      
-      i {
-        transform: scale(1.1);
-        color: $background-alt;
-      }
-    }
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(100, 255, 218, 0.2);
   }
+}
 
-  .card-content {
-    padding: 2rem;
+.service-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #64ffda;
+  
+  i {
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.4));
   }
+}
 
-  .icon-wrapper {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    background: rgba($accent-color, 0.1);
-    transition: all 0.3s ease;
-    
-    i {
-      font-size: 1.5rem;
-      color: $text-color;
-      transition: all 0.3s ease;
-    }
-  }
+.service-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
 
-  h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: $text-color;
-  }
-
-  p {
-    color: $text-light;
-    line-height: 1.6;
-  }
+.service-description {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
   .services-section {
-    padding: 4rem 0;
+    padding: 6rem 1.5rem;
   }
-
-  .section-header {
+  
+  .section-title {
+    font-size: 2.5rem;
     margin-bottom: 3rem;
-
-    .heading {
-      font-size: 2rem;
-    }
   }
+  
+  .services-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .service-card {
+    padding: 2rem;
+  }
+}
 
+@media (max-width: 480px) {
+  .services-section {
+    padding: 5rem 1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  
   .services-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+  }
+  
+  .service-card {
+    padding: 1.75rem;
+  }
+  
+  .service-title {
+    font-size: 1.3rem;
   }
 }
 

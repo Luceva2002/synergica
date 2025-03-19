@@ -38,10 +38,16 @@ import { environment } from '@env/environment';
     </main>
     <app-footer />
   `,
+  styles: [`
+    main {
+      position: relative;
+      z-index: 1;
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  title = 'Synergica - Soluzioni Digitali Innovative';
+  title = 'Luca Evangelista - Portfolio';
   
   constructor(
     private titleService: Title,
@@ -50,7 +56,7 @@ export class AppComponent implements OnInit {
   
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
-    this.metaService.updateTag({ name: 'description', content: 'Trasformiamo le tue idee in soluzioni digitali innovative' });
+    this.metaService.updateTag({ name: 'description', content: 'Trasformiamo le tue idee in soluzioni innovative' });
     
     if (!environment.production) {
       console.log(`Versione dell'applicazione: ${environment.appVersion}`);
